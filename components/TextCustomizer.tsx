@@ -1,15 +1,16 @@
 'use client';
 import React from 'react';
-import InputField from './input-field';
-import SliderField from './slider-field';
-import ColorPicker from './color-picker';
-import FontFamilyPicker from './font-picker'; 
-import { Button } from '../ui/button';
+import InputField from '@/components/editor/input-field';
+import SliderField from '@/components/editor/slider-field';
+import ColorPicker from '@/components/editor/color-picker';
+import FontFamilyPicker from '@/components/editor/font-picker'; 
+import { Button } from '@/components/ui/button';
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+
 
 interface TextCustomizerProps {
   textSet: {
@@ -44,8 +45,12 @@ const TextCustomizer: React.FC<TextCustomizerProps> = ({ textSet, handleAttribut
         />
         <FontFamilyPicker
           attribute="fontFamily" 
-          currentFont={textSet.fontFamily} 
-          handleAttributeChange={(attribute, value) => handleAttributeChange(textSet.id, attribute, value)}
+          currentFont={textSet.fontFamily}
+          handleAttributeChange={(attribute, value) => {
+            console.log("FontFamilyPicker change:", attribute, value);
+            handleAttributeChange(textSet.id, attribute, value);
+          }}
+          // handleAttributeChange={(attribute, value) => handleAttributeChange(textSet.id, attribute, value)}
         />
         <ColorPicker
           attribute="color" 
@@ -371,6 +376,59 @@ export default TextCustomizer;
 //             </AccordionContent>
 //         </AccordionItem>
 //     );
+// };
+
+// export default TextCustomizer;
+
+
+// import React from 'react';
+// import { Button } from '@/components/ui/button';
+// import { Input } from '@/components/ui/input';
+// import { Slider } from '@/components/ui/slider';
+// // import { fontOptions } from '@/constants/fonts';
+// import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+// interface TextCustomizerProps {
+//   textSets: Array<any>;
+//   onTextChange: (id: number, attribute: string, value: any) => void;
+//   onAddNewText: () => void;
+//   onRemoveText: (id: number) => void;
+// }
+
+// const TextCustomizer: React.FC<TextCustomizerProps> = ({
+//   textSets,
+//   onTextChange,
+//   onAddNewText,
+//   onRemoveText,
+// }) => {
+//   return (
+//     <div>
+//       <Button onClick={onAddNewText}>Add New Text</Button>
+//       <Accordion type="single" collapsible>
+//         {textSets.map((textSet) => (
+//           <AccordionItem key={textSet.id} value={`item-${textSet.id}`}>
+//             <AccordionTrigger>Text {textSet.id}</AccordionTrigger>
+//             <AccordionContent>
+//               <Input
+//                 value={textSet.text}
+//                 onChange={(e) => onTextChange(textSet.id, 'text', e.target.value)}
+//                 placeholder="Enter text"
+//               />
+//               <Slider
+//                 value={[textSet.fontSize]}
+//                 onValueChange={(value) => onTextChange(textSet.id, 'fontSize', value[0])}
+//                 min={10}
+//                 max={100}
+//                 step={1}
+//               />
+//               {/* Add more customization options here */}
+//               <Button onClick={() => onRemoveText(textSet.id)}>Remove</Button>
+//             </AccordionContent>
+//           </AccordionItem>
+//         ))}
+//       </Accordion>
+//     </div>
+//   );
 // };
 
 // export default TextCustomizer;

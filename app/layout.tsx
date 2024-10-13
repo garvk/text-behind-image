@@ -6,6 +6,7 @@ import "./globals.css";
 import SupabaseProvider from "@/providers/SupabaseProvider";
 import UserProvider from "@/providers/UserProvider";
 import { Toaster } from "@/components/ui/toaster"
+import '@/app/fonts.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
